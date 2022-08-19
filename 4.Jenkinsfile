@@ -15,7 +15,7 @@ pipeline {
           docker build -t ${imageTag}
         """
         sh '''
-          echo $DH_CREDS_PSD | docker login --username=$DH_CREDS_USR --password-stdin
+          echo $DH_CREDS_PSD | docker login --username=$DH_CREDS_USR --password -stdin
         '''
         script {
           def sha256 = sh(returnStdout: true, script: "docker push ${imageTag} | grep sha256 | awk -F':' '{print \$1}'").trim()
