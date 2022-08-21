@@ -9,10 +9,11 @@ pipeline {
   }
   post{
     always {
-      junit '**/target/*.xml'
+      sh 'echo $?'
     }
     failure {
-      mail to: "team.example.com", subject: 'The Pipeline filed :('
+      sh "echo Failure Occured"
+      sh "exit 1"
     }
   }
 }
